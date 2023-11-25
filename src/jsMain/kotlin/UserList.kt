@@ -4,6 +4,7 @@ import react.FC
 import react.Props
 import react.dom.html.ReactHTML.button
 import react.dom.html.ReactHTML.div
+import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.strong
 
 external interface UserListProps : Props {
@@ -11,6 +12,12 @@ external interface UserListProps : Props {
 }
 
 val UserList = FC<UserListProps> { props ->
+    h1 {
+        css {
+            textAlign = TextAlign.center
+        }
+        +"Список пользователей"
+    }
     for (user in props.users) {
         div {
             css {
