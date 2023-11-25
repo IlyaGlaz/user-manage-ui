@@ -1,28 +1,34 @@
+import api.getAllUsers
 import csstype.*
 import emotion.react.Global
 import emotion.react.css
 import emotion.react.styles
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
-import minor.UserInput
+import ui.UserInput
 import react.FC
 import react.Props
 import react.dom.html.InputType
 import react.dom.html.ReactHTML.button
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.form
+import react.useEffectOnce
 import react.useState
 
+val mainScope = MainScope()
+
 val App = FC<Props> {
-    var allUsers: List<User> by useState(
-        listOf(
-            User(1, "ivan@gmail.com", LocalDate(1900, 1, 1), "Ivan", "Ivanov"),
-            User(2, "patay@gmail.com", LocalDate(1920, 2, 2), "Petya", "Smirnov"),
-            User(3, "max@gmail.com", LocalDate(1988, 3, 3), "Maksim", "Maksimov")
-        )
-    )
+    var allUsers: List<User> by useState(emptyList())
     var username: String by useState("")
     var firstname: String by useState("")
     var lastname: String by useState("")
+
+    useEffectOnce {
+        mainScope.launch {
+            allUsers = getAllUsers()
+        }
+    }
 
     fun create() {
         val newUser = User(

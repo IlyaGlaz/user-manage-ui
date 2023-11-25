@@ -1,8 +1,7 @@
-package minor
+package ui
 
 import csstype.*
 import emotion.react.css
-import org.w3c.dom.events.Event
 import react.FC
 import react.Props
 import react.dom.html.ReactHTML.button

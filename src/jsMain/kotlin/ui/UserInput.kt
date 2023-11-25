@@ -1,4 +1,4 @@
-package minor
+package ui
 
 import csstype.*
 import emotion.react.css
