@@ -2,16 +2,22 @@ package minor
 
 import csstype.*
 import emotion.react.css
+import org.w3c.dom.events.Event
 import react.FC
 import react.Props
 import react.dom.html.ReactHTML.button
 
 external interface ButtonProps : Props {
+    var onClickButton: (Unit) -> (Unit)
     var text: String
 }
 
 val CreateButton = FC<ButtonProps> { props ->
     button {
+        onClick = {event ->
+            event.preventDefault()
+            props.onClickButton
+        }
         css {
             padding = Padding(5.px, 15.px)
             color = NamedColor.teal

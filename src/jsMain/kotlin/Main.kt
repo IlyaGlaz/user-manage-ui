@@ -3,6 +3,7 @@ import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable
 import react.create
 import react.dom.client.createRoot
+import kotlin.random.Random
 
 fun main() {
     val container = document.getElementById("root") ?: error("Couldn't find root container!")
@@ -18,8 +19,4 @@ data class User(
     val lastname: String
 )
 
-val allUsers = listOf(
-    User(1, "ivan@gmail.com", LocalDate(1900, 1, 1), "Ivan", "Ivanov"),
-    User(2, "patay@gmail.com", LocalDate(1920, 2, 2), "Petya", "Smirnov"),
-    User(3, "max@gmail.com", LocalDate(1988, 3, 3), "Maksim", "Maksimov")
-)
+val random: Random = Random
