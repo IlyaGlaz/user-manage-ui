@@ -8,7 +8,7 @@ import react.dom.html.InputType
 import react.dom.html.ReactHTML.input
 
 external interface InputProps : Props {
-    var value: String
+    var text: String
     var onChangeValue: (String) -> Unit
     var type: InputType
     var placeholder: String
@@ -22,9 +22,9 @@ val UserInput = FC<InputProps> { props ->
             margin = Margin(5.px, 0.px)
             border = Border(1.px, LineStyle.solid, NamedColor.teal)
         }
-        value = props.value
-        onChange = {
-            props.onChangeValue
+        value = props.text
+        onChange = { event ->
+            props.onChangeValue(event.target.value)
         }
         type = props.type
         placeholder = props.placeholder
